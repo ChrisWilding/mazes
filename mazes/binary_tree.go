@@ -5,13 +5,23 @@ func BinaryTree(grid *Grid) {
 		for column := 0; column < grid.Columns; column++ {
 			cell := grid.Cell(row, column)
 
-			var neighbour *Cell
+			var neighbours []*Cell
 
-			if random.Int()%2 == 0 {
-				neighbour = cell.North
-			} else {
-				neighbour = cell.East
+			if cell.North != nil {
+				neighbours = append(neighbours, cell.North)
 			}
+
+			if cell.East != nil {
+				neighbours = append(neighbours, cell.East)
+			}
+
+			l := len(neighbours)
+			if l == 0 {
+				break
+			}
+
+			i := random.Intn(l)
+			neighbour := neighbours[i]
 
 			if neighbour != nil {
 				cell.LinkBidirectional(neighbour)
