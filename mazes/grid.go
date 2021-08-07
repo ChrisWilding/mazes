@@ -6,21 +6,19 @@ import (
 	"time"
 )
 
-var random = rand.New(rand.NewSource(time.Now().UnixNano()))
-
 type Grid struct {
 	Rows    int
 	Columns int
-
-	Grid [][]*Cell
+	Grid    [][]*Cell
+	Random  *rand.Rand
 }
 
 func NewGrid(rows, columns int) *Grid {
 	grid := Grid{
 		Rows:    rows,
 		Columns: columns,
-
-		Grid: make([][]*Cell, rows),
+		Grid:    make([][]*Cell, rows),
+		Random:  rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 
 	for row := range grid.Grid {
@@ -54,8 +52,8 @@ func (g *Grid) Cell(row, column int) *Cell {
 }
 
 func (g *Grid) RandomCell() *Cell {
-	row := random.Intn(g.Rows - 1)
-	column := random.Intn(g.Columns - 1)
+	row := g.Random.Intn(g.Rows - 1)
+	column := g.Random.Intn(g.Columns - 1)
 	return g.Grid[row][column]
 }
 

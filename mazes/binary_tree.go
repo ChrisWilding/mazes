@@ -20,7 +20,7 @@ func BinaryTree(grid *Grid) {
 				break
 			}
 
-			i := random.Intn(l)
+			i := grid.Random.Intn(l)
 			neighbour := neighbours[i]
 
 			if neighbour != nil {
