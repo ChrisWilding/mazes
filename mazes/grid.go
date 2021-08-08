@@ -2,10 +2,17 @@ package mazes
 
 import (
 	"bytes"
+	"image"
+	"image/color"
+	"image/draw"
+	"image/png"
+	"io"
 	"log"
 	"math/rand"
 	"time"
 )
+
+const cellSize = 10
 
 type Grid struct {
 	Rows    int
@@ -113,4 +120,56 @@ func (g *Grid) String() string {
 	}
 
 	return b.String()
+}
+
+func (g *Grid) ToPNG(w io.Writer) {
+	width := cellSize * g.Columns
+	height := cellSize * g.Rows
+
+	img := image.NewRGBA(image.Rect(0, 0, width+1, height+1))
+	draw.Draw(img, img.Bounds(), image.Transparent, image.Point{}, draw.Src)
+
+	for row := 0; row < g.Rows; row++ {
+		for column := 0; column < g.Columns; column++ {
+			cell := g.Cell(row, column)
+
+			x1 := cell.Column * cellSize
+			y1 := cell.Row * cellSize
+			x2 := (cell.Column + 1) * cellSize
+			y2 := (cell.Row + 1) * cellSize
+
+			if cell.North == nil {
+				hLine(img, x1, y1, x2)
+			}
+
+			if cell.West == nil {
+				vLine(img, x1, y1, y2)
+			}
+
+			if !cell.IsLinked(cell.East) {
+				vLine(img, x2, y1, y2)
+			}
+
+			if !cell.IsLinked(cell.South) {
+				hLine(img, x1, y2, x2)
+			}
+		}
+	}
+
+	err := png.Encode(w, img)
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
+
+func hLine(img *image.RGBA, x1, y, x2 int) {
+	for ; x1 <= x2; x1++ {
+		img.Set(x1, y, color.Black)
+	}
+}
+
+func vLine(img *image.RGBA, x, y1, y2 int) {
+	for ; y1 <= y2; y1++ {
+		img.Set(x, y1, color.Black)
+	}
 }
