@@ -10,6 +10,6 @@ import (
 func main() {
 	g := mazes.NewGrid(4, 4)
 	g.Random = rand.New(rand.NewSource(1))
-	mazes.BinaryTree(g)
+	mazes.Sidewinder(g)
 	fmt.Print(g)
 }
