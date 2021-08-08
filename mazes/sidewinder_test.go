@@ -8,22 +8,22 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestBinaryTree(t *testing.T) {
+func TestSidewinder(t *testing.T) {
 	g := NewGrid(4, 4)
 	g.Random = rand.New(rand.NewSource(1))
 
-	BinaryTree(g)
+	Sidewinder(g)
 	actual := g.String()
 
 	expected := `
 +---+---+---+---+
 |               |
++   +   +---+---+
+|   |           |
++   +---+---+---+
+|               |
 +---+---+   +   +
 |           |   |
-+   +   +   +   +
-|   |   |   |   |
-+---+   +---+   +
-|       |       |
 +---+---+---+---+
 `
 
