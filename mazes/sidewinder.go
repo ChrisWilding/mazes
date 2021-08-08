@@ -1,5 +1,7 @@
 package mazes
 
+import "math/rand"
+
 func Sidewinder(grid *Grid) {
 	for row := 0; row < grid.Rows; row++ {
 
@@ -9,7 +11,7 @@ func Sidewinder(grid *Grid) {
 			cell := grid.Cell(row, column)
 			run = append(run, cell)
 
-			if shouldCloseOut(cell, grid.Random.Intn(3)) {
+			if shouldCloseOut(cell, grid.Random) {
 				i := grid.Random.Intn(len(run))
 				member := run[i]
 				if member.North != nil {
@@ -23,6 +25,6 @@ func Sidewinder(grid *Grid) {
 	}
 }
 
-func shouldCloseOut(cell *Cell, randomInt int) bool {
-	return cell.East == nil || (cell.North != nil && randomInt == 0)
+func shouldCloseOut(cell *Cell, random *rand.Rand) bool {
+	return cell.East == nil || (cell.North != nil && random.Intn(3) == 0)
 }
