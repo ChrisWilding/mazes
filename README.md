@@ -23,10 +23,10 @@ $ ./mazes-for-programmers -w 10 -h 10 -a sidewinder -o sidewinder.png
 ```
 
 This is an example of a maze generated using the binary tree algorithm
-![A maze generated using the binary tree alorithm](https://github.com/ChrisWliding/mazes-for-programmers/blob/main/images/binary-tree.png?raw=true)
+![A maze generated using the binary tree alorithm](https://raw.githubusercontent.com/ChrisWilding/mazes-for-programmers/main/images/binary-tree.png)
 
 This is an example of a maze generated using the sidewinder algorithm
-![A maze generated using the sidewinder alorithm](https://github.com/ChrisWliding/mazes-for-programmers/blob/main/images/sidewinder.png?raw=true)
+![A maze generated using the sidewinder alorithm](https://raw.githubusercontent.com/ChrisWilding/mazes-for-programmers/main/images/binary-tree.png)
 
 # Testing
 
