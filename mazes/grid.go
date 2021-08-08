@@ -2,6 +2,7 @@ package mazes
 
 import (
 	"bytes"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -98,10 +99,16 @@ func (g *Grid) String() string {
 			}
 		}
 
-		top.WriteTo(&b)
+		_, err := top.WriteTo(&b)
+		if err != nil {
+			log.Fatalln(err)
+		}
 		b.WriteString("\n")
 
-		bottom.WriteTo(&b)
+		_, err = bottom.WriteTo(&b)
+		if err != nil {
+			log.Fatalln(err)
+		}
 		b.WriteString("\n")
 	}
 
