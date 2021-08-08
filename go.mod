@@ -1,4 +1,4 @@
-module github.com/ChrisWilding/mazes
+module github.com/ChrisWilding/mazes-for-programmers
 
 go 1.16
 
