@@ -14,17 +14,19 @@ The alogrithms and implementations in the book are all written in Ruby. This rep
 $ git clone git@github.com:ChrisWilding/mazes-for-programmers.git
 $ cd ./mazes-for-programmers
 $ go build
-$ ./mazes-for-programmers
-+---+---+---+---+
-|               |
-+---+---+   +   +
-|           |   |
-+   +   +   +   +
-|   |   |   |   |
-+---+   +---+   +
-|       |       |
-+---+---+---+---+
 ```
+
+# Usage
+
+```sh
+$ ./mazes-for-programmers -w 10 -h 10 -a sidewinder -o sidewinder.png
+```
+
+This is an example of a maze generated using the binary tree algorithm
+![A maze generated using the binary tree alorithm](https://github.com/ChrisWliding/mazes-for-programmers/blob/main/images/binary-tree.png?raw=true)
+
+This is an example of a maze generated using the sidewinder algorithm
+![A maze generated using the sidewinder alorithm](https://github.com/ChrisWliding/mazes-for-programmers/blob/main/images/sidewinder.png?raw=true)
 
 # Testing
 
