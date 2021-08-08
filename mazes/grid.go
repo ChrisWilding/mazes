@@ -127,7 +127,7 @@ func (g *Grid) ToPNG(w io.Writer) {
 	height := cellSize * g.Rows
 
 	img := image.NewRGBA(image.Rect(0, 0, width+1, height+1))
-	draw.Draw(img, img.Bounds(), image.Transparent, image.ZP, draw.Src)
+	draw.Draw(img, img.Bounds(), image.Transparent, image.Point{}, draw.Src)
 
 	for row := 0; row < g.Rows; row++ {
 		for column := 0; column < g.Columns; column++ {
@@ -156,7 +156,10 @@ func (g *Grid) ToPNG(w io.Writer) {
 		}
 	}
 
-	png.Encode(w, img)
+	err := png.Encode(w, img)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 func hLine(img *image.RGBA, x1, y, x2 int) {
