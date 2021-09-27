@@ -6,7 +6,7 @@ The alogrithms and implementations in the book are all written in Ruby. This rep
 
 # Prerequisites
 
-1. [Go 1.16](https://golang.org/doc/install)
+1. [Go 1.17](https://golang.org/doc/install)
 
 # Setup
 
@@ -28,7 +28,7 @@ This is an example of a maze generated using the binary tree algorithm
 
 This is an example of a maze generated using the sidewinder algorithm
 
-![A maze generated using the sidewinder alorithm](https://raw.githubusercontent.com/ChrisWilding/mazes-for-programmers/main/images/binary-tree.png)
+![A maze generated using the sidewinder alorithm](https://raw.githubusercontent.com/ChrisWilding/mazes-for-programmers/main/images/sidewinder.png)
 
 # Testing
 
