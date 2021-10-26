@@ -33,5 +33,5 @@ This is an example of a maze generated using the sidewinder algorithm
 # Testing
 
 ```sh
-$ go test ./....
+$ go test ./...
 ```
