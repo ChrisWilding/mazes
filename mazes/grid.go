@@ -15,10 +15,10 @@ import (
 const cellSize = 10
 
 type Grid struct {
+	Random  *rand.Rand
+	Grid    [][]*Cell
 	Rows    int
 	Columns int
-	Grid    [][]*Cell
-	Random  *rand.Rand
 }
 
 func NewGrid(rows, columns int) *Grid {

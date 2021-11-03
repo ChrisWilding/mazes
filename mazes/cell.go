@@ -9,15 +9,15 @@ func NewCell(row, column int) *Cell {
 }
 
 type Cell struct {
-	Row    int
-	Column int
+	links map[*Cell]bool
 
 	North *Cell
 	South *Cell
 	East  *Cell
 	West  *Cell
 
-	links map[*Cell]bool
+	Column int
+	Row    int
 }
 
 func (c *Cell) Link(cell *Cell) {
