@@ -14,19 +14,27 @@ import (
 
 const cellSize = 10
 
+type ContentsOfCell func(cell *Cell) string
+
+func DefaultContentsOfCell(cell *Cell) string {
+	return "   "
+}
+
 type Grid struct {
-	Random  *rand.Rand
-	Grid    [][]*Cell
-	Rows    int
-	Columns int
+	Random         *rand.Rand
+	ContentsOfCell ContentsOfCell
+	Grid           [][]*Cell
+	Rows           int
+	Columns        int
 }
 
 func NewGrid(rows, columns int) *Grid {
 	grid := Grid{
-		Rows:    rows,
-		Columns: columns,
-		Grid:    make([][]*Cell, rows),
-		Random:  rand.New(rand.NewSource(time.Now().UnixNano())),
+		Rows:           rows,
+		Columns:        columns,
+		Grid:           make([][]*Cell, rows),
+		Random:         rand.New(rand.NewSource(time.Now().UnixNano())),
+		ContentsOfCell: DefaultContentsOfCell,
 	}
 
 	for row := range grid.Grid {
@@ -91,7 +99,7 @@ func (g *Grid) String() string {
 				cell = NewCell(-1, -1)
 			}
 
-			top.WriteString("   ")
+			top.WriteString(g.ContentsOfCell(cell))
 
 			if cell.IsLinked(cell.East) {
 				top.WriteString(" ")
