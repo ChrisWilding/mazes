@@ -20,6 +20,30 @@ type Cell struct {
 	Row    int
 }
 
+func (c *Cell) Distances() *Distances {
+	d := NewDistances(c)
+	var frontier []*Cell
+	frontier = append(frontier, c)
+
+	for len(frontier) > 0 {
+		var newFrontier []*Cell
+
+		for _, cell := range frontier {
+			for _, linked := range cell.Links() {
+				if _, ok := d.GetDistance(linked); !ok {
+					distance, _ := d.GetDistance(cell)
+					d.SetDistance(linked, distance+1)
+					newFrontier = append(newFrontier, linked)
+				}
+			}
+		}
+
+		frontier = newFrontier
+	}
+
+	return d
+}
+
 func (c *Cell) Link(cell *Cell) {
 	c.links[cell] = true
 }
